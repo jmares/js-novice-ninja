@@ -1,43 +1,40 @@
 const quiz = [
-    ["What is Superman's real name?", "Clark Kent"],
-    ["What is Wonder Woman's real name?", "Diana Prince"],
-    ["What is Batman's real name?", "Bruce Wayne"],
-    ["What is Spiderman's real name?", "Peter Parker"]
+    { name: "Superman", realName: "Clark Kent"},
+    { name: "Wonder woman", realName: "Diana Prince"},
+    { name: "Batman", realName: "Bruce Wayne"},
+    { name: "Spiderman", realName: "Peter Parker"}
 ];
 
-let score = 0;
-
-function ask(question) {
-    return prompt(question);
-}
-
-
-function check(response, answer) {
-    if (response === answer) {
-        alert("Correct!");
-        score++;
-    } else {
-       alert(`Wrong! The correct answer was ${answer}.`) 
-    }    
-}
-
-
-function start(quiz) {
-    let score = 0;
-    for (const [question, answer] of quiz) {
-        const response = ask(question);
-        check(response, answer);
+const game = {
+    start(quiz) {
+        this.questions = [...quiz];
+        this.score = 0;
+        for (const question of this.questions) {
+            this.question = question;
+            this.ask();
+        }
+        this.gameOver();
+    },
+    ask() {
+        const question = ` What is ${this.question.name}'s real name?`;
+        const response = prompt(question);
+        this.check(response);
+    },
+    check(response) {
+        const answer = this.question.realName;
+        if (response === answer) {
+            alert('Correct!');
+            this.score++;
+        } else {
+            alert(`Wrong! The correct answer was ${answer}`);
+        }
+    },
+    gameOver() {
+        alert(`Game over, you scored ${this.score} point${this.score !== 1 ? 's' : ''}`);
     }
 }
 
 
-function gameOver() {
-    alert(`Game over! You scored ${score} point${score !== 1 ? 's' : '' }.`);
-}
+game.start(quiz);
 
-
-start(quiz);
-
-
-gameOver();
 
