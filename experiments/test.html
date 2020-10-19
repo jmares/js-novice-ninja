@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #parent {
+            display: flex;
+            margin: 25px auto;
+            max-width: 700px;
+            flex-direction: row;
+            justify-content: space-around;
+        }
+        #child1, #child2 {
+            border: 1px solid black;
+            padding: 20px;
+        }
+        ul {
+            margin: 50px;
+            font-size: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div id="parent">
+        <div id="child1">
+            <ul>
+                <li>line 1</li>
+                <li>line 2</li>
+                <li>line 3</li>
+                <li>line 4</li>
+                <li>line 5</li>
+            </ul>
+        </div>
+        <div id="child2">
+            <ul>
+                <li>line 1</li>
+                <li>line 2</li>
+                <li>line 3</li>
+                <li>line 4</li>
+                <li>line 5</li>
+            </ul>
+        </div>
+    </div>
+    <script>
+        var child1 = document.getElementById('child1');
+        child1.addEventListener('click', () => alert('Clicked the left div'), false);
+        var ul1 = child1.getElementsByTagName('ul')[0];
+        ul1.addEventListener('click', () => alert('Clicked the left ul'), false);
+        var lis1 = [...ul1.getElementsByTagName('li')];
+        lis1.forEach((li) => { li.addEventListener('click', () => alert('Clicked on a left li'), false);})
+        var child2 = document.getElementById('child2');
+        child2.addEventListener('click', () => alert('Clicked right div'), true);
+        var ul2 = child2.getElementsByTagName('ul')[0];
+        ul2.addEventListener('click', () => alert('Clicked the right ul'), true);
+        var lis2 = [...ul2.getElementsByTagName('li')];
+        lis2.forEach((li) => { li.addEventListener('click', () => alert('Clicked on a right li'), true);})
+
+    </script>
+</body>
+</html>
