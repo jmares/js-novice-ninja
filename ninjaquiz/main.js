@@ -13,6 +13,8 @@ function shuffle(array) {
     }
 }
 
+// chapter 13: supposed to get quiz data from api which no longer exists
+
 const quiz = [
     { name: "Superman", realName: "Clark Kent"},
     { name: "Wonder woman", realName: "Diana Prince"},
