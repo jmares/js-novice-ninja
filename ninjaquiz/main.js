@@ -22,7 +22,15 @@ const quiz = [
     { name: "The Hulk", realName: "Bruce Banner"},
     { name: "Cyclops", realName: "Scott Summers"},
     { name: "Daredevil", realName: "Matt Murdock"},
-    { name: "Spiderman", realName: "Peter Parker"}
+    { name: "Spiderman", realName: "Peter Parker"},
+    { name: "6 Million Dollar Man", realName: "Steve Austin"},
+    { name: "Batgirl", realName: "Barbara Gordon"},
+    { name: "Captain America", realName: "Steven Rogers"},
+    { name: "Cyclops", realName: "Scott Summers"},
+    { name: "Catwoman", realName: "Selena Kyle"},
+    { name: "Moon Knight", realName: "Marc Spector"},
+    { name: "Nightwing", realName: "Dick Grayson"},
+    { name: "Two-Face", realName: "Harvey Dent"}
 ];
 
 const view = {
@@ -33,6 +41,7 @@ const view = {
     start: document.getElementById('start'),
     response: document.querySelector('#response'),
     timer: document.querySelector('#timer strong'),
+    hiScore: document.querySelector('#hiScore strong'),
     setup() {
         this.show(this.question);
         this.show(this.response);
@@ -41,6 +50,7 @@ const view = {
         this.render(this.score, game.score);
         this.render(this.result, '');
         this.render(this.info, '');
+        this.render(this.hiScore, game.hiScore());
     },
     render(target, content, attributes) {
         for (const key in attributes) {
@@ -58,6 +68,7 @@ const view = {
         this.hide(this.question);
         this.hide(this.response);
         this.show(this.start);
+        this.render(this.hiScore, game.hiScore());
     },
     buttons(array) {
         return array.map(value => `<button>${value}</button>`).join('');
@@ -116,6 +127,13 @@ const game = {
         view.render(view.info, `Game over, you scored ${this.score} point${this.score !== 1 ? 's' : ''}`)
         view.tearDown();
         clearInterval(this.timer);
+    },
+    hiScore() {
+        const hi = localStorage.getItem('highScore') || 0;
+        if (this.score > hi || hi === 0) {
+            localStorage.setItem('highScore', this.score);
+        }
+        return localStorage.getItem('highScore');
     }
 }
 
