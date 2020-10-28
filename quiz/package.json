@@ -1,0 +1,25 @@
+{
+  "name": "quiz-ninja",
+  "version": "1.0.0",
+  "description": "A Javascript Quiz",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack --progress --color --profile"
+  },
+  "keywords": [
+    "quiz",
+    "ninja",
+    "javascript"
+  ],
+  "author": "JM",
+  "license": "MIT",
+  "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-loader": "^8.1.0",
+    "babel-preset-env": "^1.7.0",
+    "babili-webpack-plugin": "^0.1.2",
+    "webpack": "^5.3.0",
+    "webpack-cli": "^4.1.0"
+  }
+}
